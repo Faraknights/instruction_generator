@@ -39,11 +39,10 @@ class SentenceGenerator {
 						break
 					default:
 						sentence += [
-							`${["place", "put"][Math.floor(Math.random()*2)]} ${this.distance} ${this.color} blocks into a ${this.structure}`,
 							`${Keywords[Math.floor(Math.random()*6)]} a ${this.structure} of ${this.distance} ${this.color} blocks`,
 							`${Keywords[Math.floor(Math.random()*6)]} a ${this.color} ${this.structure} with ${this.distance} blocks`,
 							`${Keywords[Math.floor(Math.random()*6)]} a ${this.distance} ${this.color} blocks ${this.structure}`
-						][Math.floor(Math.random()*4)]
+						][Math.floor(Math.random()*3)]
 						break
 				}
 
