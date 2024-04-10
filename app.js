@@ -27,7 +27,7 @@ class SentenceGenerator {
 					case "stack":
 						sentence += [
 							`Stack ${this.distance} ${this.color} blocks`,
-							`${["place", "put"][Math.floor(Math.random()*2)]} ${this.distance} ${this.color} blocks into a stack`,
+							`${["place", "put"][Math.floor(Math.random()*2)]} ${this.distance} ${this.color} blocks in a stack`,
 							`${["build", "make", "create", "add"][Math.floor(Math.random()*4)]} a ${this.color} ${["tower","pillar", "vertical line"][Math.floor(Math.random()*2)]} by stacking ${this.distance} blocks`
 						][Math.floor(Math.random()*3)]
 						break
