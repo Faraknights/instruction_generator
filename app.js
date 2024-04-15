@@ -18,10 +18,16 @@ class SentenceGenerator {
 
 	generate() {
 		this.color = Color[Math.floor(Math.random() * Color.length)]
-		this.structure = Structure[Math.floor(Math.random() * Structure.length)]
 		this.position = Position[Math.floor(Math.random() * Position.length)]
+		this.structure = Structure[Math.floor(Math.random() * Structure.length)]
 		this.direction = Direction[Math.floor(Math.random() * Direction.length)]
 		this.distance = Math.ceil(Math.random() * 9) + 1
+
+		if(this.structure == "line" && this.direction == "diagonal"){
+			while(this.position == "edges"){
+				this.position = Position[Math.floor(Math.random() * Position.length)]
+			}
+		}
 
 		let sentence = ""
 
@@ -54,40 +60,55 @@ class SentenceGenerator {
 			case "center":
 			case "middle":
 				sentence += [
-					`${gap} space${gap > 1 ? "s" : ""} away from the ${["center", "middle"][Math.floor(Math.random()*2)]}`,
-					`${gap} block${gap > 1 ? "s" : ""} away from the ${["center", "middle"][Math.floor(Math.random()*2)]}`,
 					`at the ${["center", "middle"][Math.floor(Math.random()*2)]}`,
-					`near the ${["center", "middle"][Math.floor(Math.random()*2)]}`,
-					`around the ${["center", "middle"][Math.floor(Math.random()*2)]}`,
 					`in the ${["center", "middle"][Math.floor(Math.random()*2)]}`,
 					`toward the ${["center", "middle"][Math.floor(Math.random()*2)]}`
-				][Math.floor(Math.random()*7)]
+				][Math.floor(Math.random()*3)]
 				break
 			case "edges":
-				sentence += [
-					`${gap} space${gap > 1 ? "s" : ""} away from an edge`,
-					`${gap} block${gap > 1 ? "s" : ""} away from an edge`,
-					`near an edge`,
-					`on an edge`,
-					`along an edge`,
-					`against an edge`
-				][Math.floor(Math.random()*6)]
+				if(["pillar", "stack", "tower"].includes(this.structure) || (this.structure == "line" && this.direction == "horizontal")){
+					sentence += [
+						`${gap} space${gap > 1 ? "s" : ""} away from an edge`,
+						`${gap} block${gap > 1 ? "s" : ""} away from an edge`,
+						`near an edge`,
+						`on an edge`,
+						`against an edge`
+					][Math.floor(Math.random()*5)]
+				} else {
+					sentence += [
+						`${gap} space${gap > 1 ? "s" : ""} away from an edge`,
+						`${gap} block${gap > 1 ? "s" : ""} away from an edge`,
+						`near an edge`,
+						`on an edge`,
+						`along an edge`,
+						`against an edge`
+					][Math.floor(Math.random()*6)]
+				} 
 				break
 			case "corner":
-				sentence += [
-					`on the corner`,
-					`on a corner`,
-					`in a corner`,
-					`in the corner`
-				][Math.floor(Math.random()*4)]
+				if(["pillar", "stack", "tower"].includes(this.structure) || (this.structure == "line" && this.direction == "horizontal")){
+					sentence += [
+						`on the corner`,
+						`on a corner`,
+						`in a corner`,
+						`in the corner`
+					][Math.floor(Math.random()*4)]
+				} else {
+					if(this.structure == "line" && this.direction == "diagonal"){
+						sentence += `starting from a corner`
+					} else {
+						sentence += [
+							`along an edge starting from a corner`,
+							`starting from a corner`,
+						][Math.floor(Math.random()*2)]
+					}
+				} 
 				break
 		}
 
-		const board = ["grid", "board"][Math.floor(Math.random()*2)]
-
 		sentence += [
 			``,
-			` of the ${board}`
+			` of the ${["grid", "board"][Math.floor(Math.random()*2)]}`
 		][Math.floor(Math.random()*2)]
 
 
