@@ -23,10 +23,6 @@ class SentenceGenerator {
 		this.direction = Direction[Math.floor(Math.random() * Direction.length)]
 		this.distance = Math.ceil(Math.random() * 9) + 1
 
-
-		this.structure = "line"
-		this.direction = "vertical"
-
 		if(this.structure == "line" && this.direction == "diagonal"){
 			while(this.position == "edges"){
 				this.position = Position[Math.floor(Math.random() * Position.length)]
