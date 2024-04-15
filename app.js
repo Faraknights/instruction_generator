@@ -23,6 +23,10 @@ class SentenceGenerator {
 		this.direction = Direction[Math.floor(Math.random() * Direction.length)]
 		this.distance = Math.ceil(Math.random() * 9) + 1
 
+
+		this.structure = "line"
+		this.direction = "vertical"
+
 		if(this.structure == "line" && this.direction == "diagonal"){
 			while(this.position == "edges"){
 				this.position = Position[Math.floor(Math.random() * Position.length)]
@@ -66,7 +70,7 @@ class SentenceGenerator {
 				][Math.floor(Math.random()*3)]
 				break
 			case "edges":
-				if(["pillar", "stack", "tower"].includes(this.structure) || (this.structure == "line" && this.direction == "horizontal")){
+				if(["pillar", "stack", "tower"].includes(this.structure) || (this.structure == "line" && this.direction == "vertical")){
 					sentence += [
 						`${gap} space${gap > 1 ? "s" : ""} away from an edge`,
 						`${gap} block${gap > 1 ? "s" : ""} away from an edge`,
@@ -86,7 +90,7 @@ class SentenceGenerator {
 				} 
 				break
 			case "corner":
-				if(["pillar", "stack", "tower"].includes(this.structure) || (this.structure == "line" && this.direction == "horizontal")){
+				if(["pillar", "stack", "tower"].includes(this.structure) || (this.structure == "line" && this.direction == "vertical")){
 					sentence += [
 						`on the corner`,
 						`on a corner`,
