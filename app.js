@@ -1,7 +1,7 @@
 const Color = ["red", "orange", "blue", "purple", "green", 'yellow']
 const Keywords = ["add", "place", "build", "make", "create", "put"]
 const Structure = ["row", "line", "pillar", "stack", "tower"]
-const Position = ["center", "edges", "middle", "corner"]
+const Position = ["center", "edges", "corner"]
 const Direction = ["vertical", "horizontal", "diagonal"]
 
 
@@ -58,12 +58,10 @@ class SentenceGenerator {
 		const gap = [1,2][Math.floor(Math.random()*2)]
 		switch (this.position) {
 			case "center":
-			case "middle":
 				sentence += [
-					`at the ${["center", "middle"][Math.floor(Math.random()*2)]}`,
 					`in the ${["center", "middle"][Math.floor(Math.random()*2)]}`,
 					`toward the ${["center", "middle"][Math.floor(Math.random()*2)]}`
-				][Math.floor(Math.random()*3)]
+				][Math.floor(Math.random()*2)]
 				break
 			case "edges":
 				if(["pillar", "stack", "tower"].includes(this.structure) || (this.structure == "line" && this.direction == "vertical")){
